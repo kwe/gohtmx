@@ -31,6 +31,12 @@ func main() {
 			"Title": "Hello, World!",
 		})
 	})
+
+	app.Get("/messages", func(c *fiber.Ctx) error {
+		// Render message template
+		return c.Render("messages", nil, "layouts/empty")
+	})
+
 	app.Get("/metrics", monitor.New())
 
 	log.Fatal(app.Listen(":3000"))
